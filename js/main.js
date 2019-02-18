@@ -15,52 +15,39 @@ class ImageMaker {
         // TODO: Set up attributes that point to the HTML elements we wish to work with.
 
         // TODO: Select the `#image-preview` div using any document selector method.
-        this.imagePreview = ;
+        this.imagePreview = document.querySelector("div#image-preview");
 
-        // TODO: create a new `<p>` element called `this.topText`
-        this.topText = ;
-        // TODO: Add a `class` attribute to `this.topText` that contains the classname "top-text".
+        // create the p element for the top string
+        this.topText = document.createElement("p");
+        this.topText.setAttribute("class", "top-text"); 
+        this.imagePreview.appendChild(this.topText);
 
-        // TODO: Append `this.topText` as a child element to `this.imagePreview`
-
-
-        // TODO: create a new `<p>` element called `this.bottomText`
-        this.bottomText = ;
-        // TODO: Add a `class` attribute to `this.bottomText` that contains the classname "bottom-text".
-
-        // TODO: Append `this.bottomText` as a child element to `this.imagePreview`
+        // create the p element for the bottom string
+        this.bottomText = document.createElement("p");
+        this.bottomText.setAttribute("class", "bottom-text");
+        this.imagePreview.appendChild(this.bottomText);
 
         // This class also needs to use the form fields to read user input. Set
         // those up for future use, too.
+        this.backgroundInput = document.querySelector("select[name='backgroundImage']");
+        this.topTextInput = document.querySelector("input[name='topText']");
+        this.topTextAlign = document.querySelector("select[name='topTextAlign']");
+        this.bottomTextInput = document.querySelector("input[name='bottomText']");
+        this.bottomTextAlign = document.querySelector("select[name='bottomTextAlign']");
 
-        // TODO: Select the `input` element with the `name` attribute "backgroundImage"
-        this.backgroundInput = ;
-
-        // TODO: Select the `input` element with the `name` attribute "topText"
-        this.topTextInput = ;
-
-        // TODO: Select the `input` element with the `name` attribute "bottomText"
-        this.bottomTextInput = ;
-
-        // NOTE: If you add additional form fields to modify other aspects of
-        // the image, then you will need to make attributes for each of those
-        // elements here.
+        // I added this just to get it to render the first time
+        this.drawPreview();
     }
-    drawPreview(){
-        // This function is called whenever a user changes one of the form fields
-        // and whenever an image is generated for download. This function must
-        // update the style attributes and innerHTML content of the HTML
-        // elements selected in the `constructor()` of this class in order to
-        // update `this.imagePreview`.
-
-        // TODO: Update the `background-image` CSS property for `this.imagePreview`.
-
-        // TODO: Update the `innerHTML` of `this.topText`.
-
-        // TODO: Update the `innerHTML` of `this.bottomText`
-
-
+    drawPreview()
+    {
+        this.imagePreview.style.backgroundImage = "url('images/" + this.backgroundInput.value + "')";
+        // I used textContent instead of innerHTML; textContent doesn't parse HTML stuff
+        this.topText.textContent = this.topTextInput.value;
+        this.topText.style.textAlign = this.topTextAlign.value;
+        this.bottomText.textContent = this.bottomTextInput.value;
+        this.bottomText.style.textAlign = this.bottomTextAlign.value;
     }
+
     downloadImage(){
         this.drawPreview();
         generateImage();

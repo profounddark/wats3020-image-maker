@@ -18,10 +18,14 @@
 .top-text {
     position: absolute;
     top: 0;
+    left: 5%;
+    width: 90%;
 }
 .bottom-text {
     position: absolute;
     bottom: 0;
+    left: 5%;
+    width: 90%;
 }
 
 /* Form Styles */
